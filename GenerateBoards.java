@@ -1,22 +1,14 @@
 import java.util.Random;
+import java.lang.Math;
 
 public class GenerateBoards {
-    private int[] permutation;
 
     /**
      * Generates a random permutation of 8 numbers
      * to represent the 8-puzzle
      */
-    public GenerateBoards() {
-        int[] permutation = {};
-        for (int i = 0; i < 9; i++) {
-            permutation[i] = (i + 1);
-        }
-        shuffle(this.permutation, 9);
-        this.permutation = permutation;
-    }
 
-    static void shuffle(int[] arr, int n) {
+    public static void shuffle(int[] arr, int n) {
         Random rand = new Random();
         for (int i = n - 1; i >= 1; i--) {
             int j = rand.nextInt(i + 1);
@@ -31,7 +23,7 @@ public class GenerateBoards {
      * @param board
      * @return
      */
-    public boolean checkBoard(int[] board) {
+    public static boolean checkBoard(int[] board) {
         int cycleCounter = 0;
         int[] permBoard = new int[8];
         int j = 0;
@@ -41,15 +33,15 @@ public class GenerateBoards {
                 j++;
             }
         }
-        int[] explored = { 0, 0, 0, 0, 0, 0, 0, 0 };
-        for (int i = 0; i < 8; i++) {
+        int[] explored = { 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+        for (int i = 1; i < 9; i++) {
             if (explored[i] == 0) {
                 explored[i] = 1;
                 int startingNode = i;
-                int nextNode = permBoard[startingNode];
+                int nextNode = permBoard[startingNode - 1];
                 while (nextNode != startingNode) {
                     explored[nextNode] = 1;
-                    nextNode = permBoard[nextNode];
+                    nextNode = permBoard[nextNode - 1];
                 }
                 cycleCounter++;
             }
@@ -60,10 +52,6 @@ public class GenerateBoards {
         return false;
     }
 
-    public int[] getPermutation() {
-        return this.permutation;
-    }
-
     public int h1Calculator(int[] board){
         int h1 = 0;
         for(i = 0; i < 9; i++){
@@ -72,5 +60,16 @@ public class GenerateBoards {
             }
         }
         return h1;
+    }
+
+    public int h2Calculator(int[] board) {
+        int h2 = 0;
+        for(int i = 0; i < 9; i++){
+            int hDist = (board[i] % 3) - (i + 1 % 3);
+            h2 += Math.abs(hDist);
+
+            int vDist = (board[i] / 3) - 
+        }
+        return h2;
     }
 }
