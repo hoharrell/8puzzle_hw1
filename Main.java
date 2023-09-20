@@ -3,10 +3,28 @@ import java.util.*;
 public class Main {
     // A* functions go here
     public static void main(String[] args) {
-        int[] board = { 9, 4, 1, 2, 3, 7, 6, 5, 8 };
-        Puzzle puzzle = new Puzzle(board, 0);
+        int[] board = { 6, 4, 9, 1, 2, 7, 5, 8, 3 };
+        System.out.println(GenerateBoards.checkBoard(board));
+        Puzzle puzzle = new Puzzle(board);
+        puzzle.swapRight();
         puzzle.swapUp();
-        System.out.println(Arrays.toString(board));
+        puzzle.swapLeft();
+        puzzle.swapDown();
+        puzzle.swapRight();
+        puzzle.swapRight();
+        puzzle.swapUp();
+        puzzle.swapLeft();
+        puzzle.swapLeft();
+        puzzle.swapUp();
+        puzzle.swapRight();
+        puzzle.swapRight();
+        puzzle.swapDown();
+        puzzle.swapLeft();
+        puzzle.swapDown();
+        puzzle.swapLeft();
+        puzzle.swapUp();
+        puzzle.swapRight();
+        puzzle.swapUp();
         puzzle.swapLeft();
         System.out.println(Arrays.toString(board));
         // int validBoards = 0;
