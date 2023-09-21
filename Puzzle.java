@@ -52,7 +52,6 @@ public class Puzzle {
     }
 }
 
-// slightly off because not starting at 0
 // % 3 != 0 --> right
 // % 3 != 2 ---> left
 // <= 5 --> down

@@ -52,10 +52,10 @@ public class GenerateBoards {
         return false;
     }
 
-    public int h1Calculator(int[] board){
+    public int h1Calculator(int[] board) {
         int h1 = 0;
-        for(i = 0; i < 9; i++){
-            if(((i + 1) != board[i])) && (board[i] != 9)){
+        for (int i = 0; i < 9; i++) {
+            if (((i + 1) != board[i]) && (board[i] != 9)) {
                 h1++;
             }
         }
@@ -64,11 +64,16 @@ public class GenerateBoards {
 
     public int h2Calculator(int[] board) {
         int h2 = 0;
-        for(int i = 0; i < 9; i++){
-            int hDist = (board[i] % 3) - (i + 1 % 3);
-            h2 += Math.abs(hDist);
+        for (int i = 0; i < 9; i++) {
+            if (board[i] != 9) {
+                int hDist = (board[i] % 3) - (i + 1 % 3);
+                h2 += Math.abs(hDist);
 
-            int vDist = (board[i] / 3) - 
+                int myRow = board[i] / 3;
+                int goodRow = (i + 1) / 3;
+                int vDist = myRow - goodRow;
+                h2 += Math.abs(vDist);
+            }
         }
         return h2;
     }
