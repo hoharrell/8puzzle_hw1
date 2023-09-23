@@ -1,9 +1,11 @@
 public class Puzzle {
-    private int[] board;
-    private int blankSpot;
+    public int[] board;
+    public int blankSpot;
+    public int depth;
 
-    public Puzzle(int[] board) {
-        this.board = board;
+    public Puzzle(int[] board, int depth) {
+        this.board = board.clone();
+        this.depth = depth;
         for (int i = 0; i < 9; i++) {
             if (board[i] == 9) {
                 this.blankSpot = i;
@@ -11,43 +13,55 @@ public class Puzzle {
         }
     }
 
-    public void swapRight() {
+    public Puzzle swapRight() {
+        Puzzle newPuzzle = new Puzzle(this.board, this.depth + 1);
         if (this.blankSpot % 3 != 0) {
-            this.board[this.blankSpot] = this.board[this.blankSpot - 1];
-            this.board[this.blankSpot - 1] = 9;
-            this.blankSpot--;
+            newPuzzle.board[this.blankSpot] = newPuzzle.board[this.blankSpot - 1];
+            newPuzzle.board[this.blankSpot - 1] = 9;
+            newPuzzle.blankSpot--;
+            return newPuzzle;
         } else {
             System.out.println("Error: Cannot Swap Right");
+            return null;
         }
     }
 
-    public void swapLeft() {
+    public Puzzle swapLeft() {
+        Puzzle newPuzzle = new Puzzle(this.board, this.depth + 1);
         if (this.blankSpot % 3 != 2) {
-            this.board[blankSpot] = this.board[this.blankSpot + 1];
-            this.board[this.blankSpot + 1] = 9;
-            this.blankSpot++;
+            newPuzzle.board[blankSpot] = newPuzzle.board[this.blankSpot + 1];
+            newPuzzle.board[this.blankSpot + 1] = 9;
+            newPuzzle.blankSpot++;
+            return newPuzzle;
         } else {
             System.out.println("Error: Cannot Swap Left");
+            return null;
         }
     }
 
-    public void swapDown() {
+    public Puzzle swapDown() {
+        Puzzle newPuzzle = new Puzzle(this.board, this.depth + 1);
         if (this.blankSpot >= 3) {
-            this.board[this.blankSpot] = this.board[this.blankSpot - 3];
-            this.board[this.blankSpot - 3] = 9;
-            blankSpot -= 3;
+            newPuzzle.board[this.blankSpot] = newPuzzle.board[this.blankSpot - 3];
+            newPuzzle.board[this.blankSpot - 3] = 9;
+            newPuzzle.blankSpot -= 3;
+            return newPuzzle;
         } else {
             System.out.println("Error: Cannot Swap Down");
+            return null;
         }
     }
 
-    public void swapUp() {
+    public Puzzle swapUp() {
+        Puzzle newPuzzle = new Puzzle(this.board, this.depth + 1);
         if (this.blankSpot <= 5) {
-            this.board[blankSpot] = this.board[blankSpot + 3];
-            this.board[blankSpot + 3] = 9;
-            blankSpot += 3;
+            newPuzzle.board[blankSpot] = newPuzzle.board[blankSpot + 3];
+            newPuzzle.board[blankSpot + 3] = 9;
+            newPuzzle.blankSpot += 3;
+            return newPuzzle;
         } else {
             System.out.println("Error: Cannot Swap Up");
+            return null;
         }
     }
 }

@@ -52,7 +52,7 @@ public class GenerateBoards {
         return false;
     }
 
-    public int h1Calculator(int[] board) {
+    public static int h1Calculator(int[] board) {
         int h1 = 0;
         for (int i = 0; i < 9; i++) {
             if (((i + 1) != board[i]) && (board[i] != 9)) {
@@ -62,7 +62,7 @@ public class GenerateBoards {
         return h1;
     }
 
-    public int h2Calculator(int[] board) {
+    public static int h2Calculator(int[] board) {
         int h2 = 0;
         for (int i = 0; i < 9; i++) {
             if (board[i] != 9) {
