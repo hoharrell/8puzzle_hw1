@@ -10,8 +10,8 @@ public class Main {
         }
         int goodDepths = 0;
         while (goodDepths < 12) {
-            int[] board = { 4, 1, 3, 2, 9, 6, 7, 5, 8 };
-            // GenerateBoards.shuffle(board, 9);
+            int[] board = { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+            GenerateBoards.shuffle(board, 9);
             // throw out board if seen -- maybe not
 
             // ensure goal state is reachable and edit board if not
@@ -32,7 +32,11 @@ public class Main {
                 }
             }
 
-            int[] solution = findSolution(new Puzzle(board, 0));
+            ArrayList<Integer> puzzleBoard = new ArrayList<Integer>();
+            for (int i = 0; i < board.length; i++) {
+                puzzleBoard.add(board[i]);
+            }
+            int[] solution = findSolution(new Puzzle(puzzleBoard, 0));
             int depth = solution[1];
             if (depth % 2 == 0 && depth < 24) {
                 if (arraysAtDepths[depth / 2 - 1] < 99) {
@@ -61,7 +65,7 @@ public class Main {
     }
 
     public static int[] findSolution(Puzzle initialBoard) {
-        Set<int[]> visitedStates = new HashSet<int[]>();
+        Set<ArrayList<Integer>> visitedStates = new HashSet<ArrayList<Integer>>();
         PriorityQueue<Puzzle> puzzleStates = new PriorityQueue<>(new CustomComparator());
 
         // add initial board to priority queue
@@ -90,12 +94,12 @@ public class Main {
         return fail;
     }
 
-    public static boolean checkGoal(int[] board) {
+    public static boolean checkGoal(ArrayList<Integer> board) {
         int[] permBoard = new int[8];
         int j = 0;
         for (int i = 0; i < 9; i++) {
-            if (board[i] != 9) {
-                permBoard[j] = board[i];
+            if (board.get(i) != 9) {
+                permBoard[j] = board.get(i);
                 j++;
             }
         }

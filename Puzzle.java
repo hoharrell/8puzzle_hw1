@@ -1,13 +1,15 @@
+import java.util.*;
+
 public class Puzzle {
-    public int[] board;
+    public ArrayList<Integer> board;
     public int blankSpot;
     public int depth;
 
-    public Puzzle(int[] board, int depth) {
-        this.board = board.clone();
+    public Puzzle(ArrayList<Integer> board, int depth) {
+        this.board = new ArrayList<Integer>(board);
         this.depth = depth;
         for (int i = 0; i < 9; i++) {
-            if (board[i] == 9) {
+            if (board.get(i) == 9) {
                 this.blankSpot = i;
             }
         }
@@ -16,8 +18,8 @@ public class Puzzle {
     public Puzzle swapRight() {
         Puzzle newPuzzle = new Puzzle(this.board, this.depth + 1);
         if (this.blankSpot % 3 != 0) {
-            newPuzzle.board[this.blankSpot] = newPuzzle.board[this.blankSpot - 1];
-            newPuzzle.board[this.blankSpot - 1] = 9;
+            newPuzzle.board.set(newPuzzle.blankSpot, newPuzzle.board.get(this.blankSpot - 1));
+            newPuzzle.board.set(newPuzzle.blankSpot - 1, 9);
             newPuzzle.blankSpot--;
             return newPuzzle;
         } else {
@@ -29,8 +31,8 @@ public class Puzzle {
     public Puzzle swapLeft() {
         Puzzle newPuzzle = new Puzzle(this.board, this.depth + 1);
         if (this.blankSpot % 3 != 2) {
-            newPuzzle.board[blankSpot] = newPuzzle.board[this.blankSpot + 1];
-            newPuzzle.board[this.blankSpot + 1] = 9;
+            newPuzzle.board.set(newPuzzle.blankSpot, newPuzzle.board.get(this.blankSpot + 1));
+            newPuzzle.board.set(newPuzzle.blankSpot + 1, 9);
             newPuzzle.blankSpot++;
             return newPuzzle;
         } else {
@@ -42,8 +44,8 @@ public class Puzzle {
     public Puzzle swapDown() {
         Puzzle newPuzzle = new Puzzle(this.board, this.depth + 1);
         if (this.blankSpot >= 3) {
-            newPuzzle.board[this.blankSpot] = newPuzzle.board[this.blankSpot - 3];
-            newPuzzle.board[this.blankSpot - 3] = 9;
+            newPuzzle.board.set(newPuzzle.blankSpot, newPuzzle.board.get(this.blankSpot - 3));
+            newPuzzle.board.set(newPuzzle.blankSpot - 3, 9);
             newPuzzle.blankSpot -= 3;
             return newPuzzle;
         } else {
@@ -55,8 +57,8 @@ public class Puzzle {
     public Puzzle swapUp() {
         Puzzle newPuzzle = new Puzzle(this.board, this.depth + 1);
         if (this.blankSpot <= 5) {
-            newPuzzle.board[blankSpot] = newPuzzle.board[blankSpot + 3];
-            newPuzzle.board[blankSpot + 3] = 9;
+            newPuzzle.board.set(newPuzzle.blankSpot, newPuzzle.board.get(this.blankSpot + 3));
+            newPuzzle.board.set(newPuzzle.blankSpot + 3, 9);
             newPuzzle.blankSpot += 3;
             return newPuzzle;
         } else {

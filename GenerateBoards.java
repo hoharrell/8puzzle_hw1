@@ -1,5 +1,4 @@
-import java.util.Random;
-import java.lang.Math;
+import java.util.*;
 
 public class GenerateBoards {
 
@@ -52,24 +51,24 @@ public class GenerateBoards {
         return false;
     }
 
-    public static int h1Calculator(int[] board) {
+    public static int h1Calculator(ArrayList<Integer> board) {
         int h1 = 0;
         for (int i = 0; i < 9; i++) {
-            if (((i + 1) != board[i]) && (board[i] != 9)) {
+            if (((i + 1) != board.get(i)) && (board.get(i) != 9)) {
                 h1++;
             }
         }
         return h1;
     }
 
-    public static int h2Calculator(int[] board) {
+    public static int h2Calculator(ArrayList<Integer> board) {
         int h2 = 0;
         for (int i = 0; i < 9; i++) {
-            if (board[i] != 9) {
-                int hDist = (board[i] % 3) - (i + 1 % 3);
+            if (board.get(i) != 9) {
+                int hDist = (board.get(i) % 3) - (i + 1 % 3);
                 h2 += Math.abs(hDist);
 
-                int myRow = board[i] / 3;
+                int myRow = board.get(i) / 3;
                 int goodRow = (i + 1) / 3;
                 int vDist = myRow - goodRow;
                 h2 += Math.abs(vDist);
