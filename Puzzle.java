@@ -22,10 +22,8 @@ public class Puzzle {
             newPuzzle.board.set(newPuzzle.blankSpot - 1, 9);
             newPuzzle.blankSpot--;
             return newPuzzle;
-        } else {
-            System.out.println("Error: Cannot Swap Right");
-            return null;
         }
+        return null;
     }
 
     public Puzzle swapLeft() {
@@ -35,10 +33,8 @@ public class Puzzle {
             newPuzzle.board.set(newPuzzle.blankSpot + 1, 9);
             newPuzzle.blankSpot++;
             return newPuzzle;
-        } else {
-            System.out.println("Error: Cannot Swap Left");
-            return null;
         }
+        return null;
     }
 
     public Puzzle swapDown() {
@@ -48,10 +44,8 @@ public class Puzzle {
             newPuzzle.board.set(newPuzzle.blankSpot - 3, 9);
             newPuzzle.blankSpot -= 3;
             return newPuzzle;
-        } else {
-            System.out.println("Error: Cannot Swap Down");
-            return null;
         }
+        return null;
     }
 
     public Puzzle swapUp() {
@@ -61,14 +55,7 @@ public class Puzzle {
             newPuzzle.board.set(newPuzzle.blankSpot + 3, 9);
             newPuzzle.blankSpot += 3;
             return newPuzzle;
-        } else {
-            System.out.println("Error: Cannot Swap Up");
-            return null;
         }
+        return null;
     }
 }
-
-// % 3 != 0 --> right
-// % 3 != 2 ---> left
-// <= 5 --> down
-// >= 3 --> up

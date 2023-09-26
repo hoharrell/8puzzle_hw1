@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class GenerateBoards {
+public class BoardFunctions {
 
     /**
      * Generates a random permutation of 8 numbers
@@ -65,15 +65,16 @@ public class GenerateBoards {
         int h2 = 0;
         for (int i = 0; i < 9; i++) {
             if (board.get(i) != 9) {
-                int hDist = (board.get(i) % 3) - (i + 1 % 3);
+                int hDist = ((board.get(i) - 1) % 3) - (i % 3);
                 h2 += Math.abs(hDist);
 
-                int myRow = board.get(i) / 3;
-                int goodRow = (i + 1) / 3;
+                int myRow = (board.get(i) - 1) / 3;
+                int goodRow = i / 3;
                 int vDist = myRow - goodRow;
                 h2 += Math.abs(vDist);
             }
         }
         return h2;
     }
+
 }
